@@ -16,6 +16,7 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import OnlineUsers from "./components/OnlineUsers";
 import Profile from "./pages/profile/Profile";
+import MyTeams from "./pages/myTeams/MyTeams";
 
 function App() {
   const { user, authIsReady } = useAuthContext();
@@ -56,6 +57,10 @@ function App() {
                 {!user && <Redirect to="/login" />}
                 {user && <Profile />}
               </Route>
+              <Route path="/my-teams">
+                {!user && <Redirect to="/login" />}
+                {user && <MyTeams />}
+              </Route>              
             </Switch>
           </div>
           {user && <OnlineUsers />}

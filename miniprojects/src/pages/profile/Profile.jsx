@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { projectFirestore } from "../../firebase/config";
 
 import { useAuthContext } from "../../hooks/useAuthContext";
 import "./Profile.css";
@@ -8,12 +9,30 @@ export default function Profile() {
   const [userData, setUserData] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
   const [thumbnailError, setThumbnailError] = useState(null);
+  const [kudos, setKudos] = useState([]);
 
   useEffect(() => {
     setUserData({
       displayName: user.displayName,
       photoURL: user.photoURL,
     });
+  }, [user]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const kudos = await projectFirestore
+          .collection("users")
+          .doc(user.uid)
+          .collection("kudos")
+          .get();
+        setKudos(kudos.docs.map((kudo) => kudo.data()));
+        //console.log('ku==>>', );
+        // setKudos(kudos)
+      } catch (err) {
+        console.log("err getting kudos", err);
+      }
+    })();
   }, [user]);
 
   const handleInputChange = (e) => {
@@ -81,6 +100,10 @@ export default function Profile() {
           <button>Update Profile</button>
         </form>
       )}
+      {kudos.length ? <h1>My Kudos</h1> : ''}
+      {kudos.map((kudo, index) => (
+        <p key={index}>{kudo.message}</p>
+      ))}
     </div>
   );
 }

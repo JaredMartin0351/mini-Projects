@@ -1,23 +1,23 @@
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from "react-router-dom";
 
 // components
-import Avatar from './Avatar';
+import Avatar from "./Avatar";
 
 // hooks
-import { useAuthContext } from '../hooks/useAuthContext';
+import { useAuthContext } from "../hooks/useAuthContext";
 
 // styles & images
-import './Sidebar.css';
-import DashboardIcon from '../assets/dashboard_icon.svg';
-import AddIcon from '../assets/add_icon.svg';
+import "./Sidebar.css";
+import DashboardIcon from "../assets/dashboard_icon.svg";
+import AddIcon from "../assets/add_icon.svg";
 
 export default function Sidebar() {
   const { user } = useAuthContext();
   const history = useHistory();
 
   const redirectToProfilePage = () => {
-    history.push(`/profile/${user.uid}`)
-  }
+    history.push(`/profile/${user.uid}`);
+  };
 
   return (
     <div className="sidebar">
@@ -41,15 +41,21 @@ export default function Sidebar() {
                 <img src={AddIcon} alt="add team icon" />
                 <span>New Team</span>
               </NavLink>
-            </li>  
+            </li>
 
-            
             <li>
               <NavLink to="/create">
                 <img src={AddIcon} alt="add project icon" />
                 <span>New Project</span>
               </NavLink>
-            </li>          
+            </li>
+
+            <li>
+              <NavLink to="/my-teams">
+                <img src={AddIcon} alt="add team icon" />
+                <span>My Teams</span>
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </div>
