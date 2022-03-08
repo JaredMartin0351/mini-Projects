@@ -63,7 +63,7 @@ export default function ProjectSummary({ project }) {
         <h2 className="page-title">{project.name}</h2>
         <p>By {project.createdBy.displayName}</p>
         <p className="due-date">
-          Project due by {project.dueDate.toDate().toDateString()}
+          Project Due by {project.dueDate.toDate().toDateString()}
         </p>
         <p className="details">{project.details}</p>
         <h4>Project is assigned to:</h4>
@@ -75,7 +75,7 @@ export default function ProjectSummary({ project }) {
       </div>
       {user.uid === project.createdBy.id && (
         <button className="btn" onClick={handleComplete}>
-          Mark as Complete
+          Mark Complete
         </button>
       )}
     </div>

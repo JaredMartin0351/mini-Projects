@@ -83,7 +83,7 @@ export default function Profile() {
     <div className="profile-details">
       {userData && (
         <form onSubmit={handleProfileUpdate}>
-          Usernmae:{" "}
+          Username:{" "}
           <input
             name="displayName"
             value={userData.displayName}
@@ -92,7 +92,7 @@ export default function Profile() {
           <br />
           <img src={userData.photoURL} width={100} height={100} />
           <label>
-            <span>profile thumbnail:</span>
+            <span>Profile Thumbnail:</span>
             <input type="file" onChange={handleFileChange} />
             {thumbnailError && <div className="error">{thumbnailError}</div>}
           </label>
